@@ -1,10 +1,24 @@
-const http = require('http');
-const hostname = 'localhost';
-const port = 3000;
-const server = http.createServer((req, res) => {
- console.log(req.headers);
- res.statusCode = 200;
- res.end('<html><body><h1 style="color:red;">Hello, World!</h1></body></html>');
-})
+const express = require('express');
+const bodyParser = require('body-parser');
+const sequelize = require('./config/database');
+const userRoutes = require('./routes/userRoutes');
+require('dotenv').config();
 
-server.listen(port, hostname);
+const app = express();
+app.use(bodyParser.json());
+
+app.use('/users', userRoutes);
+
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
+// sync with database
+sequelize.sync()
+  .then(() => {
+    app.listen(3000, () => {
+      console.log('Server is running on port 3000');
+    });
+  })
+  .catch(err => console.error('Unable to connect to the database:', err));
+
