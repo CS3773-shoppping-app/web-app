@@ -1,3 +1,4 @@
+drequire('dotenv').config();
 const http = require('http');
 const hostname = 'localhost';
 const port = 3000;
@@ -9,7 +10,6 @@ const server = http.createServer((req, res) => {
 
 server.listen(port, hostname);
 
-require('dotenv').config();
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
