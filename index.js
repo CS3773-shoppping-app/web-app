@@ -1,4 +1,4 @@
-drequire('dotenv').config();
+require('dotenv').config();
 const http = require('http');
 const hostname = 'localhost';
 const port = 3000;
