@@ -1,4 +1,5 @@
 require('dotenv').config();
+const mysql = require('mysql');
 const http = require('http');
 const hostname = 'localhost';
 const port = 3000;
@@ -9,8 +10,6 @@ const server = http.createServer((req, res) => {
 })
 
 server.listen(port, hostname);
-
-const mysql = require('mysql');
 
 const connection = mysql.createConnection({
   host: process.env.DB_HOST,
