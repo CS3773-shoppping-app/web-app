@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
     name: "shopping-app-api",  // A name for your application
-    script: "./api/server.mjs",  // The script file to launch the app
+    script: "./api/server.js",  // The script file to launch the app
     instances: "max",  // This can be set to the number of CPU cores to use, or "max" to use all available
     autorestart: true,  // Automatically restart app if it crashes
     watch: false,  // Enable/disable watching file changes for automatic restart
