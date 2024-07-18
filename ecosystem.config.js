@@ -1,7 +1,7 @@
 module.exports = {
   apps : [{
-    name: "shopping-app",  // A name for your application
-    script: "index.js",  // The script file to launch the app
+    name: "shopping-app-api",  // A name for your application
+    script: "./api/server.mjs",  // The script file to launch the app
     instances: "max",  // This can be set to the number of CPU cores to use, or "max" to use all available
     autorestart: true,  // Automatically restart app if it crashes
     watch: false,  // Enable/disable watching file changes for automatic restart
@@ -12,5 +12,16 @@ module.exports = {
     env_production: {
       NODE_ENV: "production",
     }
-  }]
+  },{
+    name: "next-app",
+    script: "./next-shopping-app/build-start-next.sh",
+    cwd: "./next-shopping-app",
+    interpreter: "bash",
+    watch: false,
+    autorestart: true,
+    env_production: {
+      NODE_ENV: "production",
+    },
+    },
+  ],
 };
