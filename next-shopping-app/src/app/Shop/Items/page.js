@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Input } from "postcss";
-import ProductList from "./ProductList";
+import ProductList from "./ProductList.js";
 
 function ItemRow(){
   return (

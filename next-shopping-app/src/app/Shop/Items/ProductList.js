@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react/cjs/react.production.min";
+'use client'
+
+import React, { useState, useEffect } from 'react';
 import { fetchProducts } from "../../../../_lib/api";
 
 const ProductList = () => {
