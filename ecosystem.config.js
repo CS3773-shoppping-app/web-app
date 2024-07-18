@@ -14,8 +14,8 @@ module.exports = {
     }
   },{
     name: "next-app",
-    script: "./next-shopping-app/build-start-next.sh",
     cwd: "./next-shopping-app",
+    script: "./next-shopping-app/build-start-next.sh",
     interpreter: "bash",
     watch: false,
     autorestart: true,
