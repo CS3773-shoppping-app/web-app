@@ -1,8 +1,9 @@
 // server.js
 const express = require('express');
-const mysql = require('mysql'); // Use 'pg' if using PostgreSQL
-const cors = require('cors');
-const dotenv = require('dotenv');
+import express from 'express';
+import mysql from 'mysql';
+import cors from 'cors';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
