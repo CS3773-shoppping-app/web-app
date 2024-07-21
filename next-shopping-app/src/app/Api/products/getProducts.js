@@ -1,7 +1,7 @@
 'use client';
 
 export async function fetchProducts() {
-  const res = await fetch('/api/products');
+  const res = await fetch('/Api/products');
   if (!res.ok) {
     throw new Error('Failed to fetch products');
   }
