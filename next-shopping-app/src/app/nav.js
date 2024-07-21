@@ -13,7 +13,7 @@ export default function Navigation(){
                                 <Link href="/Shop/Items" className="text-sm">Add Item</Link>
                             </li>
                             <li>
-                                <a className="text-sm">All Item</a>
+                                <Link href="/Shop/Items" className="text-sm">All Item</Link>
                             </li>
                             <li>
                                 <a className="text-sm">Add Discount</a>
