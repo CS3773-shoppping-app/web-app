@@ -14,7 +14,7 @@ export async function GET() {
       password: process.env.DB_PASSWORD
     });
 
-    const query = 'SELECT image, name, stock, price FROM items';
+    const query = 'SELECT i.item_id, i.name, i.description, i.price, i.quantity_available, img.image_url FROM Items i LEFT JOIN Images img ON i.item_id = img.item_id;';
     const [results] = await db.execute(query);
     
     // Close the database connection

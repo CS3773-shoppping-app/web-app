@@ -5,10 +5,10 @@ import React, { useState, useEffect } from 'react';
 import { fetchProducts } from '../../Api/products/getProducts.js';
 
 function ItemRow({ item }) {
-    const imageUrl = item?.image || "/default-image.png"; // Default image URL
+    const imageUrl = item?.image_url || "/public/defaultImage.png"; // Default image URL
     const itemName = item?.name || "No name provided";
     const itemPrice = item?.price != null ? `$${item.price.toFixed(2)}` : "Price not available";
-    const itemQuantity = item?.quantity != null ? item.quantity : "Quantity not available";
+    const itemQuantity = item?.quantity_available != null ? item.quantity : "Quantity not available";
 
     return (
         <div className="flex flex-row items-center mb-4 p-4 border-b">
@@ -24,14 +24,14 @@ function ItemRow({ item }) {
     );
 }
 
-export default function Products() {
+export default function ProductsList() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const getProducts = async () => {
             try {
                 const data = await fetchProducts();
-                if (Array.isArray(data)) {
+                if (data) {
                     setProducts(data);
                 } else {
                     console.error('Fetched data is not an array', data);
