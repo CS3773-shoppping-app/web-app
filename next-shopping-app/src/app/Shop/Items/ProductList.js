@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from 'react';
-import { fetchProducts } from "../../../../_lib/api";
+import { fetchProducts } from '../../Api/products/getProducts.js';
 
 function ItemRow({ item }) {
     const imageUrl = item?.image || "/default-image.png"; // Default image URL
