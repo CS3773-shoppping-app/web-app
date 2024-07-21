@@ -7,8 +7,8 @@ import { fetchProducts } from '../../Api/products/getProducts.js';
 function ItemRow({ item }) {
     const imageUrl = item?.image_url || "/public/defaultImage.png"; // Default image URL
     const itemName = item?.name || "No name provided";
-    const itemPrice = item?.price != null ? `$${item.price.toFixed(2)}` : "Price not available";
-    const itemQuantity = item?.quantity_available != null ? item.quantity : "Quantity not available";
+    const itemPrice = item?.price ||  "Price not available";
+    const itemQuantity = item?.quantity_available || "Quantity not available";
 
     return (
         <div className="flex flex-row items-center mb-4 p-4 border-b">
