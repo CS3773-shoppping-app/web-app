@@ -1,7 +1,6 @@
 import mysql from 'mysql2/promise';
 import { NextResponse } from 'next/server';
 
-dotenv.config();
 
 export async function DbConnect(){
     const db = await mysql.createConnection({
