@@ -1,5 +1,4 @@
-'use client';
-
+'use client'
 import { useState } from 'react';
 import { Suspense } from 'react';
 import OrderList from './fetchOrders';
@@ -10,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-export default function OrdersPage() {
+function OrdersComponent() {
     const searchParams = useSearchParams();
     const view = searchParams.get('view');
 
@@ -23,7 +22,6 @@ export default function OrdersPage() {
       }, [view]);
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
     <div>
       <h1>Orders</h1>
       <div>
@@ -37,6 +35,12 @@ export default function OrdersPage() {
       {currentView === 'fulfilled' && <FulfilledOrderList />}
       {currentView === 'sortable' && <SortableOrderList />}
     </div>
-    </Suspense>
   );
+}
+
+export default function OrdersPage(){
+    <Suspense fallback={<div>Loading...</div>}>
+        <OrdersComponent />;
+    </Suspense>
+    
 }
