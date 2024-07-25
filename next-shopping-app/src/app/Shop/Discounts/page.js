@@ -11,6 +11,9 @@ export default function DiscountList() {
     async function fetchDiscounts() {
       try {
         const response = await fetch('/Api/discounts');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
         const data = await response.json();
         setDiscounts(data);
       } catch (error) {
