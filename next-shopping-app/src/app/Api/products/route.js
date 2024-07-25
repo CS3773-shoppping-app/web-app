@@ -1,8 +1,10 @@
+//Api/products/route.js
 import mysql from 'mysql2/promise';
 import { NextResponse } from 'next/server';
 
 
 export async function DbConnect(){
+    try{
     const db = await mysql.createConnection({
         host: process.env.DB_HOST,
         port: process.env.PORT,
@@ -10,8 +12,11 @@ export async function DbConnect(){
         database: process.env.DB_NAME,
         password: process.env.DB_PASSWORD
       });
-
       return db;
+    }catch(error){
+    console.error('Error connecting to the database:', error);
+    throw error;
+    }
   
 }
 
