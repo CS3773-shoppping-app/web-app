@@ -9,7 +9,7 @@ function ItemRow({ item }) {
     const itemName = item?.name || "No name provided";
     const itemPrice = item?.price ||  "Price not available";
     const itemQuantity = item?.quantity_available || "Quantity not available";
-    const itemId = item.iterm_id;
+    const itemId = item.item_id;
 
     return (
         <div className="flex flex-row items-center mb-4 p-4 border-b">
