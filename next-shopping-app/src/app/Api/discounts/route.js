@@ -1,7 +1,23 @@
 //Api/discounts/route.js
-'use server';
 import { NextResponse } from 'next/server';
-import { DbConnect } from '../products/route.js';
+import mysql from 'mysql2/promise';
+
+async function DbConnect(){
+  try{
+  const db = await mysql.createConnection({
+      host: process.env.DB_HOST,
+      port: process.env.PORT,
+      user: process.env.DB_USER,
+      database: process.env.DB_NAME,
+      password: process.env.DB_PASSWORD
+    });
+    return db;
+  }catch(error){
+  console.error('Error connecting to the database:', error);
+  throw error;
+  }
+
+}
 
 export async function GET() {
   console.log('GET request to /Api/discounts received');
