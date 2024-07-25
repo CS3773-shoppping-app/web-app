@@ -1,15 +1,14 @@
 'use client';
-
 import { useState, useEffect } from 'react';
 
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
-  const [changes, setChanges] = useState({});
+  const [changes, setChanges] = useState({}); 
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('/api/users');
+        const response = await fetch('/Api/users');
         if (response.ok) {
           const data = await response.json();
           setUsers(data);
@@ -38,7 +37,7 @@ export default function UsersPage() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('/api/users', {
+      const response = await fetch('/Api/Users', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -60,29 +59,28 @@ export default function UsersPage() {
 
   return (
     <div className="max-w-4xl mx-auto mt-12 p-8 bg-gradient-to-r from-violet-100 via-white to-violet-100 shadow-2xl rounded-xl">
-      <h1 className="text-4xl font-extrabold mb-10 text-violet-900">Users</h1>
+      <h1 className="text-4xl font-extrabold mb-10 text-violet-900">Manage Users</h1>
       <ul className="space-y-4">
         {users.map((user) => (
           <li key={user.user_id} className="flex justify-between items-center p-4 border border-gray-300 rounded-lg shadow-md bg-white">
             <div>
-              <p className="text-lg font-semibold text-gray-700">User ID: {user.user_id}</p>
-              <p className="text-gray-600">Username: {user.username}</p>
+              <p className="text-lg font-semibold text-gray-700">{user.username}</p>
+              <p className="text-gray-600">User ID: {user.user_id}</p>
             </div>
             <input
               type="checkbox"
-              className="w-5 h-5 text-violet-600 border-gray-300 rounded focus:ring-violet-500"
               checked={changes[user.user_id] || false}
               onChange={() => handleCheckboxChange(user.user_id)}
+              className="h-5 w-5 text-violet-600 focus:ring-violet-500 border-gray-300 rounded"
             />
           </li>
         ))}
       </ul>
-      <button 
-        onClick={handleSubmit} 
-        className="mt-8 w-full bg-violet-600 text-white py-3 rounded-lg shadow-lg hover:bg-violet-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+      <button onClick={handleSubmit} className="mt-6 w-full bg-violet-600 text-white py-3 rounded-lg shadow-lg hover:bg-violet-700 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
         Update Users
       </button>
     </div>
   );
 }
+
 
