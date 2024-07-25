@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { Suspense } from 'react';
 import OrderList from './fetchOrders';
 import UnfulfilledOrderList from './unfulfilledOrders';
 import FulfilledOrderList from './fulfilledOrders';
@@ -22,6 +23,7 @@ export default function OrdersPage() {
       }, [view]);
 
   return (
+    <Suspense fallback={<div>Loading...</div>}>
     <div>
       <h1>Orders</h1>
       <div>
@@ -35,5 +37,6 @@ export default function OrdersPage() {
       {currentView === 'fulfilled' && <FulfilledOrderList />}
       {currentView === 'sortable' && <SortableOrderList />}
     </div>
+    </Suspense>
   );
 }
