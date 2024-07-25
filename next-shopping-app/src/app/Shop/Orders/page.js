@@ -1,15 +1,24 @@
-'use client'
-import { useState } from 'react';
+'use client';
+import { useState, useEffect } from 'react';
 import { Suspense } from 'react';
-import OrderList from './fetchOrders';
+import OrderList from './orderList';
 import UnfulfilledOrderList from './unfulfilledOrders';
 import FulfilledOrderList from './fulfilledOrders';
 import SortableOrderList from './sortableOrderList';
-import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 
-function OrdersComponent() {
+async function fetchAllOrders() {
+    try {
+        const response = await fetch('/Api/orders');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching orders:', error);
+        return [];
+    }
+}
+
+function OrdersComponent({ orders }) {
     const searchParams = useSearchParams();
     const view = searchParams.get('view');
 
@@ -17,30 +26,41 @@ function OrdersComponent() {
 
     useEffect(() => {
         if (view) {
-          setCurrentView(view);
+            setCurrentView(view);
         }
-      }, [view]);
+    }, [view]);
 
-  return (
-    <div>
-      <h1>Orders</h1>
-      <div>
-        <button onClick={() => setCurrentView('all')}>All Orders</button>
-        <button onClick={() => setCurrentView('unfulfilled')}>Unfulfilled Orders</button>
-        <button onClick={() => setCurrentView('fulfilled')}>Fulfilled Orders</button>
-        <button onClick={() => setCurrentView('sortable')}>Sortable Orders</button>
-      </div>
-      {currentView === 'all' && <OrderList />}
-      {currentView === 'unfulfilled' && <UnfulfilledOrderList />}
-      {currentView === 'fulfilled' && <FulfilledOrderList />}
-      {currentView === 'sortable' && <SortableOrderList />}
-    </div>
-  );
+    return (
+        <div>
+            <h1>Orders</h1>
+            <div>
+                <button onClick={() => setCurrentView('all')}>All Orders</button>
+                <button onClick={() => setCurrentView('unfulfilled')}>Unfulfilled Orders</button>
+                <button onClick={() => setCurrentView('fulfilled')}>Fulfilled Orders</button>
+                <button onClick={() => setCurrentView('sortable')}>Sortable Orders</button>
+            </div>
+            {currentView === 'all' && <OrderList orders={orders} />}
+            {currentView === 'unfulfilled' && <UnfulfilledOrderList orders={orders} />}
+            {currentView === 'fulfilled' && <FulfilledOrderList orders={orders} />}
+            {currentView === 'sortable' && <SortableOrderList orders={orders} />}
+        </div>
+    );
 }
 
-export default function OrdersPage(){
-    return(<Suspense fallback={<div>Loading...</div>}>
-        <OrdersComponent />
-    </Suspense>)
-    
+export default function OrdersPage() {
+    const [orders, setOrders] = useState([]);
+
+    useEffect(() => {
+        async function loadOrders() {
+            const allOrders = await fetchAllOrders();
+            setOrders(allOrders);
+        }
+        loadOrders();
+    }, []);
+
+    return (
+        <Suspense fallback={<div>Loading...</div>}>
+            <OrdersComponent orders={orders} />
+        </Suspense>
+    );
 }

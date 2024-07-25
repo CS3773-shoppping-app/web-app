@@ -1,39 +1,26 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function FulfilledOrderList() {
-  const [orders, setOrders] = useState([]);
-  const [loading, setLoading] = useState(true);
+export default function FulfilledOrderList({ orders }) {
+    const [filteredOrders, setFilteredOrders] = useState([]);
 
-  useEffect(() => {
-    async function fetchOrders() {
-      try {
-        const response = await fetch('/Api/orders');
-        const data = await response.json();
-        const fulfilledOrders = data.filter(order => order.fulfilled === 'TRUE');
-        setOrders(fulfilledOrders);
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      } finally {
-        setLoading(false);
-      }
-    }
+    useEffect(() => {
+        const fulfilledOrders = orders.filter(order => order.fulfilled === 'TRUE');
+        setFilteredOrders(fulfilledOrders);
+    }, [orders]);
 
-    fetchOrders();
-  }, []);
+    if (filteredOrders.length === 0) return <p>No fulfilled orders available.</p>;
 
-  if (loading) return <p>Loading...</p>;
-
-  return (
-    <div>
-      <h1>Fulfilled Orders</h1>
-      <ul>
-        {orders.map((order) => (
-          <li key={order.order_id}>
-            Order ID: {order.order_id}, Customer: {order.customer_id}, Total Cost: {order.total_amount}, Date: {order.order_date}, Fulfilled: {order.fulfilled}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+    return (
+        <div>
+            <h1>Fulfilled Orders</h1>
+            <ul>
+                {filteredOrders.map((order) => (
+                    <li key={order.order_id}>
+                        Order ID: {order.order_id}, Customer: {order.customer_id}, Total Cost: {order.total_amount}, Date: {order.order_date}, Fulfilled: {order.fulfilled}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 }
