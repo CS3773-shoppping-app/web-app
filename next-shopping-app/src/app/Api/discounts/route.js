@@ -1,8 +1,10 @@
 //Api/discounts/route.js
+'use server';
 import { NextResponse } from 'next/server';
-import { DbConnect } from '../products/route';
+import { DbConnect } from '../products/route.js';
 
 export async function GET() {
+  console.log('GET request to /Api/discounts received');
     let connection;
   try {
     connection = await DbConnect();

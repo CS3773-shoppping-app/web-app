@@ -8,20 +8,31 @@ export default function DiscountList() {
   const [discounts, setDiscounts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function fetchDiscounts() {
-      try {
+  async function fetchAllDiscounts() {
+    try {
         const response = await fetch('/Api/discounts');
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
         const data = await response.json();
-        setDiscounts(data);
+        return data;
+    } catch (error) {
+        console.error('Error fetching discounts:', error);
+        return [];
+    }
+}
+
+  useEffect(() => {
+    async function loadDiscounts() {
+      try {
+        const alldiscounts = await fetchAllDiscounts();
+        setDiscounts(alldiscounts);
       } catch (error) {
         console.error('Error fetching discount codes:', error);
       } finally {
         setLoading(false);
       }
-    }
-
-    fetchDiscounts();
+    }loadDiscounts();
   }, []);
 
   if (loading) return <p className="text-center mt-8 text-gray-700">Loading...</p>;
