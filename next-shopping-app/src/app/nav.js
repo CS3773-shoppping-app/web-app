@@ -3,23 +3,23 @@ import Link from "next/link";
 
 export default function Navigation(){
     return(
-        <div className="absolute text-slate-950 bg-violet-100 inset-y-0 left-0 px-8 mr-2 min-w-64">
+        <div className="fixed text-slate-950 bg-violet-100 inset-y-0 left-0 px-8 mr-2 min-w-64">
             <nav className="mt-8 mx-auto relative h-100">
                 <ul className="mb-16 top-0">
                     <li className="mb-16">
                         <h3 className="text-lg font-bold">Shop</h3>
                         <ul className="pl-4">
                             <li>
-                                <Link href="/Shop/Items" className="text-sm">Add Item</Link>
+                                <Link href="/Shop/Items/Upload" className="text-sm">Add Item</Link>
                             </li>
                             <li>
                                 <Link href="/Shop/Items" className="text-sm">All Item</Link>
                             </li>
                             <li>
-                                <a className="text-sm">Add Discount</a>
+                                <Link href="/Shop/Discounts/Create" className="text-sm">Add Discount</Link>
                             </li>
                             <li>
-                                <a className="text-sm">All Discounts</a>
+                                <Link href="/Shop/Discounts" className="text-sm">All Discounts</Link>
                             </li>
                         </ul>
                     </li>
@@ -27,13 +27,13 @@ export default function Navigation(){
                         <h3 className="text-lg font-bold">Orders</h3>
                         <ul className="pl-4">
                             <li>
-                                <a className="text-sm">All Orders</a>
+                                <Link href="/Shop/Orders?view=all">All Orders</Link>
                             </li>
                             <li>
-                                <a className="text-sm">Open Orders</a>
+                                <Link href="/Shop/Orders?view=unfufilled">Open Orders</Link>
                             </li>
                             <li>
-                                <a className="text-sm">Past Orders</a>
+                                <Link href="/Shop/Orders?view=fufilled">Past Orders</Link>
                             </li>
                         </ul>
                     </li>
@@ -43,7 +43,7 @@ export default function Navigation(){
                         <h3 className="text-lg font-bold">Management</h3>
                         <ul className="pl-4">
                             <li>
-                                <a className="text-sm">Users</a>
+                                <Link href="/Shop/Users">Users</Link>
                             </li>
                         </ul>
                     </li>

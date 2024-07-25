@@ -14,8 +14,8 @@ export default function RootLayout({ children, }) {
   return (
     <html lang="en">
       <body className={`${inter.className} bg-slate-50`}>
-        <div className="container mx-auto">
           <Navigation />
+        <div className="container mx-auto">
           {children}
         </div>
       </body>
