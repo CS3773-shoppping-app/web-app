@@ -8,12 +8,13 @@ export async function GET() {
     connection = await DbConnect();
     const query = 'SELECT discount_code_id, code, discount_percentage, valid_from, valid_until FROM DiscountCodes;';
     const [rows] = await connection.execute(query);
+    console.log('Query executed successfully:', rows);
 
     return NextResponse.json(rows);
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
-  }finally{
-    if(connection){
+  }finally {
+    if (connection) {
       await connection.end();
     }
   }
