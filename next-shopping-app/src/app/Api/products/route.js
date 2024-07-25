@@ -1,6 +1,5 @@
 import mysql from 'mysql2/promise';
 import { NextResponse } from 'next/server';
-import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -19,7 +18,7 @@ export async function DbConnect(){
 
 export async function GET() {
   try {
-    const db = DbConnect();
+    const db = await DbConnect();
     const query = 'SELECT i.item_id, i.name, i.description, i.price, i.quantity_available, img.image_url FROM Items i LEFT JOIN Images img ON i.item_id = img.item_id;';
     const [results] = await db.execute(query);
     await db.end();
