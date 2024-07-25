@@ -1,28 +1,110 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+  --primary-color: #3B82F6;
+  --secondary-color: #10B981;
+  --accent-color: #F59E0B;
+  --background-color: #F3F4F6;
+  --text-color: #1F2937;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  min-height: 100vh;
+  @apply bg-gradient-to-br from-purple-400 via-pink-500 to-red-500 text-gray-900 font-sans min-h-screen;
+  color: var(--text-color);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+.btn {
+  @apply px-6 py-3 rounded-full transition-all duration-300 transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-lg;
+}
+
+.btn-primary {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
+  background-color: var(--primary-color);
+}
+
+.btn-secondary {
+  @apply bg-green-500 text-white hover:bg-green-600;
+  background-color: var(--secondary-color);
+}
+
+.btn-accent {
+  @apply bg-yellow-500 text-white hover:bg-yellow-600;
+  background-color: var(--accent-color);
+}
+
+.input {
+  @apply px-6 py-3 border-2 border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 shadow-inner;
+}
+
+.card {
+  @apply bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl p-6 transition-all duration-300 hover:shadow-2xl hover:scale-105;
+}
+
+.table-container {
+  @apply bg-white bg-opacity-20 backdrop-filter backdrop-blur-lg rounded-2xl shadow-xl overflow-hidden;
+}
+
+.table-header {
+  @apply px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider bg-gray-50 bg-opacity-50;
+}
+
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(241, 241, 241, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(136, 136, 136, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(85, 85, 85, 0.8);
+}
+
+.neon-text {
+  color: #fff;
+  text-shadow:
+    0 0 7px #fff,
+    0 0 10px #fff,
+    0 0 21px #fff,
+    0 0 42px var(--primary-color),
+    0 0 82px var(--primary-color),
+    0 0 92px var(--primary-color),
+    0 0 102px var(--primary-color),
+    0 0 151px var(--primary-color);
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
   }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-bg {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
 }
