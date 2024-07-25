@@ -8,7 +8,7 @@ export async function GET() {
     let connection;
   try {
     connection = await DbConnect();
-    const query = 'SELECT discount_code_id, code, discount_percentage, valid_from, valid_until FROM DiscountCodes;';
+    const query = 'SELECT `discount_code_id`, `code`, `discount_percentage`, `valid_from`, `valid_until` FROM DiscountCodes';
     const [rows] = await connection.execute(query);
     console.log('Query executed successfully:', rows);
 
