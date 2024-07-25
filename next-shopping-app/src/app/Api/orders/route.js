@@ -6,7 +6,7 @@ export async function GET() {
     let connection;
   try {
     connection = await DbConnect();
-    const query = 'SELECT order_id, customer_id, total_amount, order_date, fulfilled FROM Orders;'
+    const query = 'SELECT order_id, customer_id, total_amount, order_date, fulfilled FROM Orders;';
     const [rows] = await connection.execute(query);
 
     return NextResponse.json(rows);
