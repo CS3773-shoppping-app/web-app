@@ -11,7 +11,7 @@ export default function DiscountList() {
   useEffect(() => {
     async function fetchDiscounts() {
       try {
-        const response = await fetch('/api/discounts');
+        const response = await fetch('/Api/discounts');
         const data = await response.json();
         setDiscounts(data);
       } catch (error) {

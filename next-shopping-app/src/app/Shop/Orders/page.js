@@ -10,7 +10,7 @@ import { useSearchParams } from 'next/navigation';
 
 async function fetchAllOrders() {
     try {
-        const response = await fetch('/api/orders');
+        const response = await fetch('/Api/orders');
         const data = await response.json();
         return data;
     } catch (error) {
