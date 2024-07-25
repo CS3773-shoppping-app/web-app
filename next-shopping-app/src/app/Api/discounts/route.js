@@ -1,9 +1,9 @@
+//Api/discounts/route.js
 import { NextResponse } from 'next/server';
-import mysql from 'mysql2/promise';
 import { DbConnect } from '../products/route';
 
 export async function GET() {
-  let connection;
+    let connection;
   try {
     connection = await DbConnect();
     const query = 'SELECT discount_code_id, code, discount_percentage, valid_from, valid_until FROM DiscountCodes;';
