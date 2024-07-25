@@ -9,6 +9,7 @@ function ItemRow({ item }) {
     const itemName = item?.name || "No name provided";
     const itemPrice = item?.price ||  "Price not available";
     const itemQuantity = item?.quantity_available || "Quantity not available";
+    const itemId = item.iterm_id;
 
     return (
         <div className="flex flex-row items-center mb-4 p-4 border-b">
@@ -17,7 +18,7 @@ function ItemRow({ item }) {
             <p className="grow">{itemName}</p>
             <p className="mr-4">{itemPrice}</p>
             <p className="mr-4">{itemQuantity}</p>
-            <Link href={`/Shop/Items/Edit/${item.item_id}`}>
+            <Link href={`/Shop/Items/Edit/${itemId}`}>
                 <a className="text-blue-500 hover:underline">Edit</a>
             </Link>
         </div>
