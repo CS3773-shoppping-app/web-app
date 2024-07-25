@@ -39,8 +39,8 @@ function OrdersComponent() {
 }
 
 export default function OrdersPage(){
-    <Suspense fallback={<div>Loading...</div>}>
-        <OrdersComponent />;
-    </Suspense>
+    return(<Suspense fallback={<div>Loading...</div>}>
+        <OrdersComponent />
+    </Suspense>)
     
 }
